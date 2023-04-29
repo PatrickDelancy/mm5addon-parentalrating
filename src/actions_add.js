@@ -54,7 +54,7 @@
             await track.setExtendedTagsAsync(updatedExtendedTags);
             next();
         }, async () => {
-            uitools.toastMessage.show(JSON.stringify("Updated tags for " + trackList.length + " tracks"), { disableUndo: true });
+            uitools.toastMessage.show(JSON.stringify("Updated tags for " + trackList.count + " tracks"), { disableUndo: true });
             await trackList.commitAsync();
         });
     }
