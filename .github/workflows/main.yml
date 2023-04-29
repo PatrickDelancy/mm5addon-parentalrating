@@ -65,6 +65,11 @@ jobs:
           $fileContent.version = $version.ToString()
           $fileContent | ConvertTo-Json -Depth 99 | Set-Content $packageFile
 
+      - name: Commit updated version number
+        uses: Andro999b/push@v1.3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+
       # Zip all files into an mmip file
       - name: Zip Files
         run: cd '${{ github.workspace }}/src' && zip -r ${{ env.EXTENSION_FILE_NAME }}-${{ env.VERSION }}.mmip .
@@ -99,10 +104,3 @@ jobs:
           asset_path: ${{ github.workspace }}/src/${{ env.EXTENSION_FILE_NAME }}-${{ env.VERSION }}.mmip
           asset_name: ${{ env.EXTENSION_FILE_NAME }}-${{ env.VERSION }}.mmip
           asset_content_type: application/zip
-
-      - name: Add & Commit
-        uses: EndBug/add-and-commit@v9.1.2
-        with:
-          add: "*.json"
-          cwd: ${{ github.workspace }}
-          github_token: ${{ secrets.GITHUB_TOKEN }}
