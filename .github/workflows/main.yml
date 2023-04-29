@@ -24,7 +24,9 @@ jobs:
 
     steps:
       # Checks out the repository into ${{ github.workspace }}
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@latest
+        with:
+          ref: main
 
       # Remove everything we don't want to include in the final addon
       - name: Clean up addon directory
@@ -66,10 +68,10 @@ jobs:
           $fileContent | ConvertTo-Json -Depth 99 | Set-Content $packageFile
 
       - name: Commit updated version number
-        uses: github-actions-x/commit@v2.9
+        uses: actions-x/commit@v6
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          files: "*.json"
+          token: ${{ secrets.GITHUB_TOKEN }}
+          directory: ${{ github.workspace }}
 
       # Zip all files into an mmip file
       - name: Zip Files
