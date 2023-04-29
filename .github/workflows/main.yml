@@ -70,6 +70,9 @@ jobs:
 
           cd '${{ github.workspace }}'
 
+          git config user.email "actionrunner@github.com"
+          git config user.name "Github Actions"
+
           git add *.json
           git commit -m "chore: update version numbers for release [no ci]"
           git push
