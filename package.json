@@ -1,0 +1,15 @@
+{
+  "name": "mm5addon-parentalrating",
+  "version": "0.2.13",
+  "description": "",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "pack-mmip ./src/ parentalrating -a -b -y",
+    "start": "npm run build -- -o"
+  },
+  "author": "Patrick Delancy",
+  "license": "MIT",
+  "devDependencies": {
+    "pack-mmip": "^1.2.1"
+  }
+}

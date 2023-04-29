@@ -1,0 +1,9 @@
+{
+  "title": "Parental Rating and Explicit Flag",
+  "id": "parentalrating",
+  "description": "Adds parental rating to music extended tags, including ITUNESADVISORY field",
+  "version": "0.2.13",
+  "type": "general",
+  "author": "Patrick Delancy",
+  "icon": "parental_advisory_label.png"
+}
