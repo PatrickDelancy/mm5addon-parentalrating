@@ -43,7 +43,6 @@ jobs:
           $infoFile = '${{ github.workspace }}/src/info.json'
           $manifestFile = '${{ github.workspace }}/mm-manifest.json'
           $packageFile = '${{ github.workspace }}/package.json'
-          $packagelockFile = '${{ github.workspace }}/package-lock.json'
 
           $fileContent = Get-Content $infoFile | ConvertFrom-Json
           $fileVersion = [Management.Automation.SemanticVersion]::Parse($fileContent.version)
@@ -65,10 +64,6 @@ jobs:
           $fileContent = Get-Content $packageFile | ConvertFrom-Json
           $fileContent.version = $version.ToString()
           $fileContent | ConvertTo-Json -Depth 99 | Set-Content $packageFile
-
-          $fileContent = Get-Content $packagelockFile | ConvertFrom-Json
-          $fileContent.version = $version.ToString()
-          $fileContent | ConvertTo-Json -Depth 99 | Set-Content $packagelockFile
 
       # Zip all files into an mmip file
       - name: Zip Files
