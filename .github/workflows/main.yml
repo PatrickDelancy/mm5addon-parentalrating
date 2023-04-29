@@ -68,6 +68,7 @@ jobs:
       - name: Commit updated version number
         uses: Andro999b/push@v1.3
         with:
+          branch: main
           directory: ${{ github.workspace }}
           github_token: ${{ secrets.GITHUB_TOKEN }}
 
