@@ -108,6 +108,6 @@ jobs:
       - name: Add & Commit
         uses: EndBug/add-and-commit@v9.1.2
         with:
-          add: *.json
+          add: "*.json"
           cwd: ${{ github.workspace }}
           github_token: ${{ secrets.GITHUB_TOKEN }}
