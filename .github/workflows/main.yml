@@ -41,6 +41,10 @@ jobs:
         shell: pwsh
         run: |
           $infoFile = '${{ github.workspace }}/src/info.json'
+          $manifestFile = '${{ github.workspace }}/mm-manifest.json'
+          $packageFile = '${{ github.workspace }}/package.json'
+          $packagelockFile = '${{ github.workspace }}/package-lock.json'
+
           $fileContent = Get-Content $infoFile | ConvertFrom-Json
           $fileVersion = [Management.Automation.SemanticVersion]::Parse($fileContent.version)
           $version = [Management.Automation.SemanticVersion]::new($fileVersion.Major, $fileVersion.Minor, $env:GITHUB_RUN_NUMBER)
@@ -51,6 +55,20 @@ jobs:
           $fileContent.version = $version.ToString()
           $fileContent | ConvertTo-Json -Depth 99 | Set-Content $infoFile
           Get-Content $infoFile
+
+          $fileContent = Get-Content $manifestFile | ConvertFrom-Json
+          $fileContent.version = $version.ToString()
+          $fileContent.updateUrl = "https://github.com/PatrickDelancy/mm5addon-parentalrating/releases/download/$version/${{ env.EXTENSION_FILE_NAME }}-$version.mmip"
+          $fileContent | ConvertTo-Json -Depth 99 | Set-Content $manifestFile
+          Get-Content $manifestFile
+
+          $fileContent = Get-Content $packageFile | ConvertFrom-Json
+          $fileContent.version = $version.ToString()
+          $fileContent | ConvertTo-Json -Depth 99 | Set-Content $packageFile
+
+          $fileContent = Get-Content $packagelockFile | ConvertFrom-Json
+          $fileContent.version = $version.ToString()
+          $fileContent | ConvertTo-Json -Depth 99 | Set-Content $packagelockFile
 
       # Zip all files into an mmip file
       - name: Zip Files
@@ -72,7 +90,7 @@ jobs:
         with:
           tag_name: ${{ env.VERSION }}
           release_name: ${{ env.VERSION }}
-          draft: true
+          draft: false
           prerelease: false
 
       # Attach the mmip to the release
@@ -86,3 +104,10 @@ jobs:
           asset_path: ${{ github.workspace }}/src/${{ env.EXTENSION_FILE_NAME }}-${{ env.VERSION }}.mmip
           asset_name: ${{ env.EXTENSION_FILE_NAME }}-${{ env.VERSION }}.mmip
           asset_content_type: application/zip
+
+      - name: Add & Commit
+        uses: EndBug/add-and-commit@v9.1.2
+        with:
+          add: *.json
+          cwd: ${{ github.workspace }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
