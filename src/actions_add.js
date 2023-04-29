@@ -40,7 +40,7 @@
     async function setParentalAdvisoryRating(newRating) {
         let trackList = uitools.getSelectedTracklist();
 
-        uitools.toastMessage.show(JSON.stringify({ newRating }), { disableUndo: true });
+        // uitools.toastMessage.show(JSON.stringify({ newRating }), { disableUndo: true });
 
         await listAsyncForEach(trackList, async (track, next) => {
             let extendedTags = JSON.parse(await track.getExtendedTagsAsync() || "[]");

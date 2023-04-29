@@ -4,7 +4,7 @@
   "description": "",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "pack-mmip ./src/ parentalrating -a -b -y",
+    "build": "pack-mmip ./src/ itunesadvisory -a -b -y",
     "start": "npm run build -- -o"
   },
   "author": "Patrick Delancy",
