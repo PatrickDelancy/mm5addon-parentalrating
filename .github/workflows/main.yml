@@ -66,11 +66,10 @@ jobs:
           $fileContent | ConvertTo-Json -Depth 99 | Set-Content $packageFile
 
       - name: Commit updated version number
-        uses: Andro999b/push@v1.3
+        uses: github-actions-x/commit@v2.9
         with:
-          branch: main
-          directory: ${{ github.workspace }}
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          files: "*.json"
 
       # Zip all files into an mmip file
       - name: Zip Files
