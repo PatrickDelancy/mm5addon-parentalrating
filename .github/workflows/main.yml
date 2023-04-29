@@ -42,7 +42,6 @@ jobs:
       # with already released versions.
       - name: Set version
         shell: pwsh
-        working-directory: ${{ github.workspace }}
         run: |
           $infoFile = '${{ github.workspace }}/src/info.json'
           $manifestFile = '${{ github.workspace }}/mm-manifest.json'
@@ -68,6 +67,8 @@ jobs:
           $fileContent = Get-Content $packageFile | ConvertFrom-Json
           $fileContent.version = $version.ToString()
           $fileContent | ConvertTo-Json -Depth 99 | Set-Content $packageFile
+
+          cd '${{ github.workspace }}'
 
           git add *.json
           git commit -m "chore: update version numbers for release [no ci]"
