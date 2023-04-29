@@ -29,12 +29,12 @@ jobs:
         with:
           ref: main
 
-      # Remove everything we don't want to include in the final addon
-      - name: Clean up addon directory
-        shell: pwsh
-        run: |
-          Remove-Item -Path "${{ github.workspace }}/.git" -Recurse -Force -Verbose
-          Remove-Item -Path "${{ github.workspace }}/.github" -Recurse -Force -Verbose
+      # # Remove everything we don't want to include in the final addon
+      # - name: Clean up addon directory
+      #   shell: pwsh
+      #   run: |
+      #     Remove-Item -Path "${{ github.workspace }}/.git" -Recurse -Force -Verbose
+      #     Remove-Item -Path "${{ github.workspace }}/.github" -Recurse -Force -Verbose
 
       # Reads the version property from the addon's info.json and sets its patch version
       # to the run number of the current build and updates the file with the new version number.
