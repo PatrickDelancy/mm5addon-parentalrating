@@ -49,12 +49,12 @@
                 ...extendedTags.filter(x => x.title != fieldName_iTunes),
                 { "title": fieldName_iTunes, "value": newRating.toString() }]
             );
-
             //uitools.toastMessage.show(JSON.stringify({ newRating, updatedExtendedTags }), { disableUndo: true });
 
             await track.setExtendedTagsAsync(updatedExtendedTags);
             next();
         }, async () => {
+            uitools.toastMessage.show(JSON.stringify("Updated tags for " + trackList.length + " tracks"), { disableUndo: true });
             await trackList.commitAsync();
         });
     }
