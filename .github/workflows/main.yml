@@ -68,6 +68,7 @@ jobs:
       - name: Commit updated version number
         uses: Andro999b/push@v1.3
         with:
+          directory: ${{ github.workspace }}
           github_token: ${{ secrets.GITHUB_TOKEN }}
 
       # Zip all files into an mmip file
