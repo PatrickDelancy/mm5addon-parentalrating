@@ -1,6 +1,6 @@
 {
   "name": "mm5addon-parentalrating",
-  "version": "0.2.17",
+  "version": "0.2.18",
   "description": "",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
