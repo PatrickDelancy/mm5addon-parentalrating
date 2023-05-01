@@ -26,6 +26,7 @@
             },
             {
                 title: "Cleaned",
+                icon: "cleaned_c",
                 execute: async () => { await setParentalAdvisoryRating(2); }
             },
         ]

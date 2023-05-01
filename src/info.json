@@ -1,7 +1,7 @@
 {
   "title": "Parental Advisory Explicit Content",
   "id": "itunesadvisory",
-  "description": "Adds native support for the ITUNESADVISORY field to indicate explicit content.",
+  "description": "Adds basic support for the ITUNESADVISORY field to indicate explicit content.",
   "version": "0.3.4",
   "minAppVersion": "5.0.2",
   "type": "general",

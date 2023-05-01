@@ -12,12 +12,17 @@
 
         var parentalAdvisory = getExtendedTagValue(sd, fieldName_iTunes);
         if (parentalAdvisory == "1") {
-            var summaryEl = el;
-            summaryEl.innerHTML += '<label class="textOther vSeparatorTiny" title="Explicit Content">[E]</label>';
-            loadIcon("explicit_e_small", (svgData) => {
-                summaryEl.innerHTML = summaryEl.innerHTML.replace('[E]', svgData);
-            });
+            let summaryEl = el;
+            summaryEl.innerHTML += ' &#127348;' // 🅴 //'<label class="textOther vSeparatorTiny" title="Explicit Content">[E]</label>';
+        } else if (parentalAdvisory == "2") {
+            let summaryEl = el;
+            summaryEl.innerHTML += ' &#127346;' // 🅲
         }
+
+        // summaryEl.innerHTML += '<label class="textOther vSeparatorTiny" title="Explicit Content">[E]</label>';
+        // loadIcon("explicit_e_small", (svgData) => {
+        //     summaryEl.innerHTML = summaryEl.innerHTML.replace('&#127348;', svgData).replace('[E]', svgData);
+        // });
     }
 
     function getExtendedTagValue(track, extendedTagName) {
