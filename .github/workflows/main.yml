@@ -1,14 +1,11 @@
 name: Create Release
 
 on:
-  # Allows the pipeline to be triggered on demand
-  workflow_dispatch:
-  # Start a new build whenever something is pushed to branch master
   push:
     branches:
       - main
     paths:
-      - src/*
+      - src/**
 
 permissions:
   contents: write
