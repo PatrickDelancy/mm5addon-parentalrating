@@ -1,7 +1,8 @@
 {
   "name": "mm5addon-parentalrating",
   "version": "0.4.24",
-  "description": "",
+  "description": "MediaMonkey 5 addon with basic support for the ITUNESADVISORY field to indicate explicit content.",
+  "repository": "github:PatrickDelancy/mm5addon-parentalrating",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "pack-mmip ./src/ itunesadvisory -a -b -y",
