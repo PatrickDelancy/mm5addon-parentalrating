@@ -2,11 +2,12 @@
   "title": "Parental Advisory Explicit Content",
   "id": "itunesadvisory",
   "description": "Adds basic support for the ITUNESADVISORY field to indicate explicit content.",
-  "version": "0.4.4",
+  "version": "1.0.24",
   "minAppVersion": "5.0.2",
   "type": "general",
   "author": "Patrick Delancy",
   "icon": "parental_advisory_label.png",
+  "config": "config.js",
   "updateURL": "https://raw.githubusercontent.com/PatrickDelancy/mm5addon-parentalrating/main/mm-manifest.json",
   "showRestartPrompt": "true"
 }

@@ -1,18 +1,22 @@
-((window) => {
+(() => {
     var fieldName_iTunes = 'ITUNESADVISORY';
+    var char_E_html = "&#127348;";
+    var char_C_html = "&#127282;";
 
     let baseSetTrackSummary = window.playerControlsHandlers.trackSummary.setValue;
 
     window.playerControlsHandlers.trackSummary.setValue = function (el, playerCtrl, sd) {
         baseSetTrackSummary(el, playerCtrl, sd);
 
-        var parentalAdvisory = getExtendedTagValue(sd, fieldName_iTunes);
-        if (parentalAdvisory == "1") {
+        let config = app.getValue('parentalrating_config', { advisoryInTitle: false });
+        if (!config.advisoryInTitle) {
+            var parentalAdvisory = getExtendedTagValue(sd, fieldName_iTunes);
             let summaryEl = el;
-            summaryEl.innerHTML += ' &#127348;' // 🅴
-        } else if (parentalAdvisory == "2") {
-            let summaryEl = el;
-            summaryEl.innerHTML += ' &#127346;' // 🅲
+            if (parentalAdvisory == "1") {
+                summaryEl.innerHTML += ' ' + char_E_html;
+            } else if (parentalAdvisory == "2") {
+                summaryEl.innerHTML += ' ' + char_C_html;
+            }
         }
     }
 
@@ -23,4 +27,4 @@
 
         return ((extendedTags || []).find(x => x.title == extendedTagName) || { value: undefined }).value;
     };
-})(window);
+})();
